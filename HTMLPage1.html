@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+				<title>Events coming up</title>
+				<link rel="preconnect" href="https://fonts.googleapis.com">
+					<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+						<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+							<style>
+								:root {
+								--bg: #07060c;
+								--card: #14121d;
+								--text: #ffffff;
+								--muted: #a9a5ba;
+								--purple: #7d2ae8;
+								--teal: #00c4cc;
+								--brand: linear-gradient(135deg, #7d2ae8 0%, #4f6bf0 50%, #00c4cc 100%);
+								}
+
+								* { box-sizing: border-box; }
+
+								html {
+								scroll-behavior: smooth;
+								background: var(--bg);
+								}
+
+								body {
+								margin: 0;
+								min-height: 100vh;
+								color: var(--text);
+								font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+								-webkit-font-smoothing: antialiased;
+								background:
+								radial-gradient(900px 420px at 15% -5%, rgba(125, 42, 232, 0.28), transparent 70%),
+								radial-gradient(800px 400px at 90% 0%, rgba(0, 196, 204, 0.18), transparent 70%),
+								var(--bg);
+								background-repeat: no-repeat;
+								}
+
+								/* Header */
+								header {
+								max-width: 1200px;
+								margin: 0 auto;
+								padding: 96px 28px 48px;
+								text-align: center;
+								}
+
+								header h1 {
+								margin: 0 auto 20px;
+								font-size: clamp(2.6rem, 8vw, 5rem);
+								font-weight: 700;
+								letter-spacing: -0.035em;
+								line-height: 1.05;
+								background: var(--brand);
+								-webkit-background-clip: text;
+								background-clip: text;
+								-webkit-text-fill-color: transparent;
+								color: transparent;
+								padding-bottom: 0.08em; /* stops descenders being clipped by the gradient */
+								}
+
+								header p {
+								margin: 0 auto;
+								max-width: 38ch;
+								color: #cfcbe0;
+								font-size: clamp(1rem, 2.4vw, 1.2rem);
+								font-weight: 400;
+								line-height: 1.6;
+								}
+
+								/* Short gradient bar under the subtitle */
+								header::after {
+								content: "";
+								display: block;
+								width: 72px;
+								height: 5px;
+								margin: 32px auto 0;
+								border-radius: 999px;
+								background: var(--brand);
+								}
+
+								/* Flowing gallery */
+								.flyers {
+								max-width: 1200px;
+								margin: 0 auto;
+								padding: 20px 28px 120px;
+								column-width: 250px;
+								column-gap: 28px;
+								}
+
+								.flyer {
+								display: block;
+								margin: 0 0 28px;
+								break-inside: avoid;
+								border-radius: 18px;
+								overflow: hidden;
+								background: var(--card);
+								position: relative;
+								z-index: 1;
+								box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+								color: inherit;
+								text-decoration: none;
+
+								opacity: 0;
+								transform: translateY(24px) scale(1);
+								transition:
+								opacity 0.6s ease,
+								transform 0.3s cubic-bezier(.2,.7,.2,1),
+								box-shadow 0.3s ease;
+								}
+
+								.flyer.visible {
+								opacity: 1;
+								transform: translateY(0) scale(1);
+								}
+
+								.flyer .frame {
+								display: block;
+								}
+
+								.flyer img {
+								display: block;
+								width: 100%;
+								height: auto;
+								}
+
+								/* Register button sits under the flyer so it never covers the artwork */
+								.flyer .cta {
+								display: block;
+								margin: 10px;
+								padding: 11px 16px;
+								border-radius: 999px;
+								background: rgba(255, 255, 255, 0.08);
+								color: #ffffff;
+								text-align: center;
+								font-size: 0.92rem;
+								font-weight: 600;
+								line-height: 1.2;
+								transition: background 0.25s ease, box-shadow 0.25s ease;
+								}
+
+								.flyer.visible:hover,
+								.flyer.visible:focus-visible {
+								transform: translateY(0) scale(1.12);
+								z-index: 10;
+								outline: none;
+								box-shadow:
+								0 0 0 3px rgba(125, 42, 232, 0.9),
+								0 24px 50px rgba(125, 42, 232, 0.35);
+								}
+
+								.flyer.visible:hover .cta,
+								.flyer.visible:focus-visible .cta {
+								background: var(--brand);
+								box-shadow: 0 6px 16px rgba(125, 42, 232, 0.45);
+								}
+
+								.flyer:focus-visible {
+								outline: 3px solid var(--teal);
+								outline-offset: 4px;
+								}
+
+								@media (hover: none) {
+								/* No hover on phones, so keep the button in its bright state */
+								.flyer .cta { background: var(--brand); }
+								}
+
+								@media (prefers-reduced-motion: reduce) {
+								html { scroll-behavior: auto; }
+								.flyer { transition: none; opacity: 1; transform: none; }
+								.flyer.visible:hover,
+								.flyer.visible:focus-visible { transform: none; }
+								.flyer .cta { transition: none; }
+								}
+
+								@media (max-width: 520px) {
+								header { padding: 64px 22px 36px; }
+								.flyers { column-width: 160px; column-gap: 16px; }
+								.flyer { margin-bottom: 16px; border-radius: 14px; }
+								.flyer .cta { margin: 8px; padding: 9px 10px; font-size: 0.82rem; }
+								}
+							</style>
+						</head>
+	<body>
+
+		<header>
+			<h1>Events coming up</h1>
+			<p>Hover over a flyer to see it bigger and click to register.</p>
+		</header>
+
+		<main class="flyers" id="flyers"></main>
+
+		<script>
+			// Add or edit your flyers here.
+			// image: path to the flyer picture
+			// url:   registration link people go to when they click
+			// alt:   short description (helps screen readers)
+			const flyers = [
+			{ image: "static/flyers/flyer1.jpg", url: "https://example.com/event-1", alt: "Flyer for event 1" },
+			{ image: "static/flyers/flyer2.jpg", url: "https://example.com/event-2", alt: "Flyer for event 2" },
+			{ image: "static/flyers/flyer3.jpg", url: "https://example.com/event-3", alt: "Flyer for event 3" },
+			{ image: "static/flyers/flyer4.jpg", url: "https://example.com/event-4", alt: "Flyer for event 4" },
+			{ image: "static/flyers/flyer5.jpg", url: "https://example.com/event-5", alt: "Flyer for event 5" },
+			{ image: "static/flyers/flyer6.jpg", url: "https://example.com/event-6", alt: "Flyer for event 6" }
+			];
+
+			const container = document.getElementById("flyers");
+
+			// Fade each flyer in as it scrolls into view
+			const observer = "IntersectionObserver" in window
+			? new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+			if (entry.isIntersecting) {
+			entry.target.classList.add("visible");
+			observer.unobserve(entry.target);
+			}
+			});
+			}, { rootMargin: "0px 0px -8% 0px" })
+			: null;
+
+			flyers.forEach(f => {
+			const a = document.createElement("a");
+			a.className = "flyer";
+			a.href = f.url;
+			a.target = "_blank";              // remove this line to open in the same tab
+			a.rel = "noopener noreferrer";
+			a.setAttribute("aria-label", "Register: " + f.alt);
+
+			const frame = document.createElement("span");
+			frame.className = "frame";
+
+			const img = document.createElement("img");
+			img.src = f.image;
+			img.alt = f.alt;
+			img.loading = "lazy";
+			frame.appendChild(img);
+
+			const cta = document.createElement("span");
+			cta.className = "cta";
+			cta.textContent = "Register now";
+
+			a.appendChild(frame);
+			a.appendChild(cta);
+			container.appendChild(a);
+
+			if (observer) observer.observe(a);
+			else a.classList.add("visible");
+			});
+		</script>
+
+	</body>
+</html>
